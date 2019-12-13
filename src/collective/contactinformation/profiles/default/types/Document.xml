@@ -7,6 +7,6 @@
 
 	<!-- Enabled behaviors -->
 	<property name="behaviors" purge="false">
-	<element value="collective.contactinformation.behaviors.related_contacts.IRelatedContacts"/>
+	<element value="collective.contactinformation.behaviors.related_contact.IRelatedContact"/>
 	</property>
 </object>
