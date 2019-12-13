@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="collective.contactinformation">
+
+    <!-- -*- extra stuff goes here -*- -->
+
+    <utility
+        component=".country_information.CountryInformationFactory"
+        name="collective.contactinformation.CountryInformation"
+    />
+
+
+</configure>
