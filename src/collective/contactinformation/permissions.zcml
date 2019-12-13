@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="collective.contactinformation.AddContactinformation"
+        title="collective.contactinformation: Add Contactinformation"
+    />
+
+
 
   </configure>
 
