@@ -3,6 +3,7 @@
     xmlns:security="http://namespaces.plone.org/supermodel/security"
     xmlns:form="http://namespaces.plone.org/supermodel/form"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+	  xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
     i18n:domain="collective.contactinformation">
   <schema>
 		<field name="telefon" type="zope.schema.TextLine">
@@ -15,7 +16,9 @@
 			<required>False</required>
 			<title>E-Mail</title>
 		</field>
-		<field name="weitere_informationen" type="plone.app.textfield.RichText">
+		<field name="weitere_informationen" 
+           type="plone.app.textfield.RichText" 
+           indexer:searchable="true">
 			<description>Hier koennen weitere Informationen zum Ansprechpartner oder der Firma hinterlegt werden wie z.B. Oeffnungszeiten.</description>
 			<required>False</required>
 			<title>weitere Informationen</title>
