@@ -6,18 +6,22 @@
 	metal:use-macro="context/main_template/macros/master">
   <body>
       <metal:block fill-slot="content-core">
-        <div tal:content="context/weitere_informationen/output"></div>
+        <div tal:content="structure context/weitere_informationen/output"></div>
         <h2>Direkter Kontakt unter:</h2>
-        Telefon:
-        <a tal:content="context/telefon"
-          tal:attributes="href string:tel:${context/telefon}">
-          Telefonnummer
-        </a>
-        E-Mail
-        <a tal:content="context/e_mail"
-          tal:attributes="href string:mailto:${context/e_mail}">
+        <div>
+          Telefon:
+          <a tal:content="context/telefon"
+            tal:attributes="href string:tel:${context/telefon}">
+            Telefonnummer
+          </a>
+        </div>
+        <div>
           E-Mail
-        </a>
+          <a tal:content="context/e_mail"
+            tal:attributes="href string:mailto:${context/e_mail}">
+            E-Mail
+          </a>
+        </div>
       </metal:block>
   <body>
 </html>
