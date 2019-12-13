@@ -1,18 +1,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="collective.contactinformation"
-      metal:use-macro="context/main_template/macros/master">
-<body>
-    <metal:block fill-slot="content-core">
-      <div class="heading">
-        <li i18n:translate="">
-          Sample View
-        </li>
-      <span tal:content="view/msg">this gets replaced</span>
-      </div>
-    </metal:block>
-
-<body>
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+	i18n:domain="collective.contactinformation"
+	metal:use-macro="context/main_template/macros/master">
+  <body>
+      <metal:block fill-slot="content-core">
+        <div tal:content="context/weitere_informationen/output"></div>
+        <h2>Direkter Kontakt unter:</h2>
+        Telefon:
+        <a tal:content="context/telefon"
+          tal:attributes="href string:tel:${context/telefon}">
+          Telefonnummer
+        </a>
+        E-Mail
+        <a tal:content="context/e_mail"
+          tal:attributes="href string:mailto:${context/e_mail}">
+          E-Mail
+        </a>
+      </metal:block>
+  <body>
 </html>
