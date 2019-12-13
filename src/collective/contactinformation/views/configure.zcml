@@ -7,6 +7,14 @@
   -*- extra stuff goes here -*-
 
   <browser:page
+     name="world-map-view"
+     for="Products.CMFCore.interfaces.IFolderish"
+     class=".world_map_view.WorldMapView"
+     template="world_map_view.pt"
+     permission="zope2.View"
+     />
+
+  <browser:page
      name="contact-view"
      for="Products.CMFCore.interfaces.IFolderish"
      class=".contact_view.ContactView"
