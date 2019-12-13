@@ -9,6 +9,8 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+# Import für Länderauswahl
+import pycountry
 
 class VocabItem(object):
     def __init__(self, token, value):
@@ -22,12 +24,12 @@ class CountryInformation(object):
     """
 
     def __call__(self, context):
-        # Just an example list of content for our vocabulary,
-        # this can be any static or dynamic data, a catalog result for example.
-        items = [
-            VocabItem(u'sony-a7r-iii', _(u'Sony Aplha 7R III')),
-            VocabItem(u'canon-5d-iv', _(u'Canon 5D IV')),
-        ]
+		# dynamisch befuelltes Vokabular mit den Inhalten
+		# des pycountry Moduls
+        items = []
+
+        for country in pycountry.countries:
+            items.append(VocabItem(country.alpha_2, country.name))
 
         # Fix context if you are using the vocabulary in DataGridField.
         # See https://github.com/collective/collective.z3cform.datagridfield/issues/31:  # NOQA: 501

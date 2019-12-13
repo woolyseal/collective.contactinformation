@@ -20,5 +20,19 @@
 			<required>False</required>
 			<title>weitere Informationen</title>
 		</field>
+    <field name="landerauwahl_einfach" type="zope.schema.Choice">
+      <description/>
+      <required>False</required>
+      <title>Laenderauwahl</title>
+      <vocabulary>collective.contactinformation.CountryInformation</vocabulary>
+    </field>
+    <field name="laenderwahl_mehrfach" type="zope.schema.Set">
+      <description/>
+      <required>False</required>
+      <title>Mehrfachauswahl Laenderwahl</title>
+      <value_type type="zope.schema.Choice">
+        <vocabulary>collective.contactinformation.CountryInformation</vocabulary>
+      </value_type>
+    </field>
   </schema>
 </model>
