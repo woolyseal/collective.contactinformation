@@ -3,26 +3,26 @@
     xmlns:security="http://namespaces.plone.org/supermodel/security"
     xmlns:form="http://namespaces.plone.org/supermodel/form"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-	  xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
+      xmlns:indexer="http://namespaces.plone.org/supermodel/indexer"
     i18n:domain="collective.contactinformation">
   <schema>
-		<field name="telefon" type="zope.schema.TextLine">
-			<description>Hier kann die Telefonnummer zum Ansprechpartner oder der Firma hinterlegt werden.</description>
-			<required>False</required>
-			<title>Telefon</title>
-		</field>
-		<field name="e_mail" type="plone.schema.email.Email">
-			<description>Hier kann die E-Mail zum Ansprechpartner oder der Firma hinterlegt werden.</description>
-			<required>False</required>
-			<title>E-Mail</title>
-		</field>
-		<field name="weitere_informationen" 
-           type="plone.app.textfield.RichText" 
-           indexer:searchable="true">
-			<description>Hier koennen weitere Informationen zum Ansprechpartner oder der Firma hinterlegt werden wie z.B. Oeffnungszeiten.</description>
-			<required>False</required>
-			<title>weitere Informationen</title>
-		</field>
+    <field name="telefon" type="zope.schema.TextLine">
+        <description>Hier kann die Telefonnummer zum Ansprechpartner oder der Firma hinterlegt werden.</description>
+        <required>False</required>
+        <title>Telefon</title>
+    </field>
+    <field name="e_mail" type="plone.schema.email.Email">
+        <description>Hier kann die E-Mail zum Ansprechpartner oder der Firma hinterlegt werden.</description>
+        <required>False</required>
+        <title>E-Mail</title>
+    </field>
+    <field name="weitere_informationen" 
+        type="plone.app.textfield.RichText" 
+        indexer:searchable="true">
+        <description>Hier koennen weitere Informationen zum Ansprechpartner oder der Firma hinterlegt werden wie z.B. Oeffnungszeiten.</description>
+        <required>False</required>
+        <title>weitere Informationen</title>
+    </field>
     <field name="landerauwahl_einfach" type="zope.schema.Choice">
       <description/>
       <required>False</required>

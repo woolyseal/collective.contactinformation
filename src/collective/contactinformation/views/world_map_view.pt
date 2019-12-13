@@ -1,50 +1,109 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:metal="http://xml.zope.org/namespaces/metal"
-	xmlns:tal="http://xml.zope.org/namespaces/tal"
-	xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-	i18n:domain="collective.contactinformation"
-	metal:use-macro="context/main_template/macros/master">
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="collective.contactinformation"
+    metal:use-macro="context/main_template/macros/master">
 <body>
-	<metal:block fill-slot="content-core">
+    <metal:block fill-slot="content-core">
 
-	<div class="haupttext"
-		 tal:condition="context/text"
-		 tal:content="structure context/text/output">
-	</div>
+    <div class="haupttext"
+         tal:define="text context/text|nothing"
+         tal:condition="text"
+         tal:content="structure context/text/output">
+    </div>
 
-	<div id="map_container"
-		 tal:define="partners view/all_partners;
-			         countries view/countriesUsed;">
-		<h2 class="mapHeader" i18n:translate="worldMapHeader">MAP</h2>
+    <div id="map_container"
+         tal:define="contacts view/all_contacts;
+                     countries view/countriesUsed;">
+        <h2 class="mapHeader" i18n:translate="worldMapHeader">MAP</h2>
 
-		<div class="selectContainer">
-			<div class="select-wrapper wrapper2">
-				<select name="country" class="selectCountry" id="selectCountry">
-					<option value="none" i18n:translate="countrySelection">select country</option>
-					<tal:block tal:repeat="country countries">
-						<option tal:attributes="value python:country.token.lower()" 
-								tal:content="python:country.title">Eins</option>
-					</tal:block>
-				</select> 
-			</div>
-		</div>
+        <div id="vmap"></div>
 
-		<div id="ergebnis" tal:condition="partners">
+        <div class="selectContainer">
+            <div class="select-wrapper wrapper2">
+                <select name="country" class="selectCountry" id="selectCountry">
+                    <option value="none" i18n:translate="countrySelection">select country</option>
+                    <tal:block tal:repeat="country countries">
+                        <option tal:attributes="value python:country.token.lower()" 
+                                tal:content="python:country.title">Eins</option>
+                    </tal:block>
+                </select> 
+            </div>
+        </div>
 
-			<div class="close"><span>+</span></div>
+        <div id="ergebnis" tal:condition="contacts">
 
-			<div id="countryUeberschrift"></div>
-			<tal:block tal:repeat="partner partners">
-				<div tal:define="obj python:partner.getObject();
-								laendercode python:obj.laenderauswahl.lower()"
-					tal:attributes="class string:partnerItem partner-${laendercode}">
-					<div class="firma" tal:content="partner/Title" />
-					<div class="information" tal:content="structure obj/adresse/output" />
-				</div>
-			</tal:block>
+            <div class="close"><span>+</span></div>
 
-		</div>
-	</div>
-	</metal:block>
+            <div id="countryUeberschrift"></div>
+            <tal:block tal:repeat="contact contacts">
+                <div tal:define="obj python:contact.getObject();
+                                laendercode python:obj.landerauwahl_einfach.lower() if (obj.landerauwahl_einfach) else None"
+                    tal:attributes="class string:contactItem contact-${laendercode}">
+                    <div class="firma" tal:content="contact/Title" />
+                    <div class="information" tal:content="structure obj/weitere_informationen/output" />
+                    <div class="phone" tal:content="obj/telefon" />
+                    <div class="mail" tal:content="obj/e_mail" />
+                </div>
+            </tal:block>
+
+        </div>
+    </div>
+
+    <script>
+      var selectable = document.getElementById("selectCountry").options;
+      var selectable_list = [];
+      // diese list nur da um zu wissen welche laender content haben
+      for (var i=0, item; item = selectable[i]; i++){
+          if (item.value != 'none') {
+              selectable_list.push(item.value);
+          }
+      }
+
+      var enabledRegions = selectable_list;
+
+      var map = jQuery('#vmap').vectorMap({
+          map: 'world_en',
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          borderOpacity: 0.25,
+          borderWidth: 1,
+          enableZoom: true,
+          color: '#B2C6D7',
+          hoverColor: '#0B5DB0',
+          selectedColor: '#0B5DB0',
+          hoverOpacity: null,
+          normalizeFunction: 'linear',
+          scaleColors: ['#b6d6ff', '#005ace'],
+          selectedRegions: null,
+          showTooltip: false,
+          multiSelectRegion: false,
+          enableZoom: true,
+          onRegionClick: function(event, code, region){
+              if(enabledRegions.indexOf(code) === -1){
+                  // Not an Enabled Region
+                  event.preventDefault();
+              } else {
+                  if (!map.isSelected(code)) {
+                      var land = region;
+                      $('#ergebnis').hide();
+                      $('.contactItem').hide();
+                      $('#countryUeberschrift').text(region);
+                      if ($('.contact-' + code).length > 0) {
+                          $('#ergebnis').show();
+                          $('.contact-' + code).show();
+                      }
+                      document.getElementById("selectCountry").value=code
+                  } else {
+                      $('#ergebnis').hide();
+                      document.getElementById("selectCountry").value='none'
+                  }
+              }
+          }
+      });
+    </script>
+
+    </metal:block>
 <body>
 </html>

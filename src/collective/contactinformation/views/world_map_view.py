@@ -11,12 +11,12 @@ from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
 class WorldMapView(BrowserView):
-	def all_contacts(self):
-		catalog = api.portal.get_tool('portal_catalog')
-		results = catalog.searchResults(
-			portal_type='Contactinformation'
-		)
-		return results
+    def all_contacts(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        results = catalog.searchResults(
+            portal_type='Contactinformation'
+        )
+        return results
 
     def getCountries(self):
         factory = getUtility(IVocabularyFactory, 'collective.contactinformation.CountryInformation')
@@ -33,6 +33,6 @@ class WorldMapView(BrowserView):
     def countriesUsed(self):
         allCountries = self.getCountries()
         all_contacts = self.all_contacts()
-        countriesUsed = [x.getObject().laenderauswahl for x in all_contacts]
+        countriesUsed = [x.getObject().landerauwahl_einfach for x in all_contacts if x.getObject().landerauwahl_einfach]
         listOfUsedCountries = [x for x in allCountries._terms if x.token in countriesUsed]
-        return listOfUsedCountriesall_contacts
+        return listOfUsedCountries

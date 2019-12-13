@@ -1,5 +1,57 @@
 <?xml version="1.0"?>
 <registry>
-<!-- -*- extra stuff goes here -*- -->
+
+    <records prefix="plone.resources/vmap-minjs"
+            interface="Products.CMFPlone.interfaces.IResourceRegistry">
+    <value key="js">++plone++collective.contactinformation/scripts/jquery.vmap.min.js</value>
+    <value key="css">
+        <element>++plone++collective.contactinformation/css/maps.less</element>
+    </value>
+    </records>
+
+    <records prefix="plone.resources/vmap-minjs"
+            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="js">++plone++collective.contactinformation/scripts/jquery.vmap.min.js</value>
+    <value key="css">
+        <element>++plone++collective.contactinformation/css/maps.less</element>
+    </value>
+    </records>
+
+    <records prefix="plone.resources/vmap-js"
+            interface="Products.CMFPlone.interfaces.IResourceRegistry">
+    <value key="js">++plone++collective.contactinformation/scripts/vmap.js</value>
+    </records>
+
+    <records prefix="plone.resources/vmap-map"
+            interface="Products.CMFPlone.interfaces.IResourceRegistry">
+    <value key="js">++plone++collective.contactinformation/scripts/jquery.vmap.world.js</value>
+    </records>
+
+    <records prefix="plone.bundles/vmapScript"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources" purge="false">
+        <element>vmap-minjs</element>
+        <element>vmap-js</element>
+    </value>
+    <value key="depends"></value>
+    <value key="jscompilation">++plone++static/vmapMap-compiled.js</value>
+    <value key="csscompilation">++plone++static/vmapMap-compiled.css</value>
+    <value key="last_compilation">2019-04-26 00:00:00</value>
+    <value key="compile">True</value>
+    <value key="enabled">True</value>
+    </records>
+
+    <records prefix="plone.bundles/vmapMap"
+            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources" purge="false">
+        <element>vmap-map</element>
+    </value>
+    <value key="depends">vmapScript</value>
+    <value key="jscompilation">++plone++static/vmapMap-compiled.js</value>
+    <value key="csscompilation">++plone++static/vmapMap-compiled.css</value>
+    <value key="last_compilation">2019-04-26 00:00:00</value>
+    <value key="compile">True</value>
+    <value key="enabled">True</value>
+    </records>
 
 </registry>
