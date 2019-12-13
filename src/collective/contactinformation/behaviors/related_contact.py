@@ -10,6 +10,11 @@ from zope.interface import Interface
 from zope.interface import implementer
 from zope.interface import provider
 
+# Import für Relations
+from plone.app.vocabularies.catalog import CatalogSource
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
+
 class IRelatedContactMarker(Interface):
     pass
 
