@@ -10,21 +10,21 @@ from zope.interface import Interface
 from zope.interface import implementer
 from zope.interface import provider
 
-
 class IRelatedContactMarker(Interface):
     pass
 
 @provider(IFormFieldProvider)
 class IRelatedContact(model.Schema):
-    """
-    """
-
-    project = schema.TextLine(
-        title=_(u'Project'),
-        description=_(u'Give in a project name'),
+    relatedContacts = RelationList(
+        title=_(u'Zugewiesene Kontakte'),
+        default=[],
         required=False,
+        description=_(u'Bitte weisen Sie hier einen oder mehrere Kontakte zu, welche zu dem jeweiligen Inhalt gehoeren.'),
+        value_type=RelationChoice(
+            title=_(u'Kontakte'),
+            source=CatalogSource(portal_type=['Contactinformation'])
+        ),
     )
-
 
 @implementer(IRelatedContact)
 @adapter(IRelatedContactMarker)
@@ -33,11 +33,11 @@ class RelatedContact(object):
         self.context = context
 
     @property
-    def project(self):
-        if hasattr(self.context, 'project'):
-            return self.context.project
+    def relatedContacts(self):
+        if hasattr(self.context, 'relatedContacts'):
+            return self.context.relatedContacts
         return None
 
-    @project.setter
-    def project(self, value):
-        self.context.project = value
+    @relatedContacts.setter
+    def relatedContacts(self, value):
+        self.context.relatedContacts = value
