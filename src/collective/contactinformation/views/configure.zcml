@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.contactinformation">
+
+  -*- extra stuff goes here -*-
+
+  <browser:page
+     name="contact-view"
+     for="Products.CMFCore.interfaces.IFolderish"
+     class=".contact_view.ContactView"
+     template="contact_view.pt"
+     permission="zope2.View"
+     />
+
+
+</configure>
