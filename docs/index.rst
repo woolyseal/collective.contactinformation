@@ -1,0 +1,5 @@
+=============================
+collective.contactinformation
+=============================
+
+User documentation
