@@ -1,18 +1,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="collective.contactinformation"
-      metal:use-macro="context/main_template/macros/master">
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+	i18n:domain="collective.contactinformation"
+	metal:use-macro="context/main_template/macros/master">
 <body>
-    <metal:block fill-slot="content-core">
-      <div class="heading">
-        <li i18n:translate="">
-          Sample View
-        </li>
-      <span tal:content="view/msg">this gets replaced</span>
-      </div>
-    </metal:block>
+	<metal:block fill-slot="content-core">
 
+	<div class="haupttext"
+		 tal:condition="context/text"
+		 tal:content="structure context/text/output">
+	</div>
+
+	<div id="map_container"
+		 tal:define="partners view/all_partners;
+			         countries view/countriesUsed;">
+		<h2 class="mapHeader" i18n:translate="worldMapHeader">MAP</h2>
+
+		<div class="selectContainer">
+			<div class="select-wrapper wrapper2">
+				<select name="country" class="selectCountry" id="selectCountry">
+					<option value="none" i18n:translate="countrySelection">select country</option>
+					<tal:block tal:repeat="country countries">
+						<option tal:attributes="value python:country.token.lower()" 
+								tal:content="python:country.title">Eins</option>
+					</tal:block>
+				</select> 
+			</div>
+		</div>
+
+		<div id="ergebnis" tal:condition="partners">
+
+			<div class="close"><span>+</span></div>
+
+			<div id="countryUeberschrift"></div>
+			<tal:block tal:repeat="partner partners">
+				<div tal:define="obj python:partner.getObject();
+								laendercode python:obj.laenderauswahl.lower()"
+					tal:attributes="class string:partnerItem partner-${laendercode}">
+					<div class="firma" tal:content="partner/Title" />
+					<div class="information" tal:content="structure obj/adresse/output" />
+				</div>
+			</tal:block>
+
+		</div>
+	</div>
+	</metal:block>
 <body>
 </html>
