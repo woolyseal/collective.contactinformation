@@ -8,7 +8,7 @@
 
   <browser:page
      name="contacts-macro"
-     for="Products.CMFCore.interfaces.IFolderish"
+     for="*"
      class=".contacts_macro.ContactsMacro"
      template="contacts_macro.pt"
      permission="zope2.View"

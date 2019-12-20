@@ -1,18 +1,29 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="collective.contactinformation"
-      metal:use-macro="context/main_template/macros/master">
-<body>
-    <metal:block fill-slot="content-core">
-      <div class="heading">
-        <li i18n:translate="">
-          Sample View
-        </li>
-      <span tal:content="view/msg">this gets replaced</span>
-      </div>
-    </metal:block>
-
-<body>
-</html>
+<div metal:define-macro="contactMacro" class="contact-macro" id="contact-macro"
+     tal:define="relations context/@@contacts-macro/getContactReferences">
+    <tal:block tal:condition="relations">
+        <h2>Kontaktinformationen</h2>
+        <div class="col-xs-12 col-sm-6 col-md-3 relations"
+             tal:repeat="rel relations">
+             <div class="contactbox">
+                <div class="contactInformation">
+                    <span class="contactTitle" 
+                        tal:condition="rel/to_object/Title"
+                        tal:content="rel/to_object/Title" />
+                    <br />
+                    <tal:phoneblock tal:condition="rel/to_object/telefon">
+                        <i class="glyphicon glyphicon-earphone"></i>
+                        <span tal:content="rel/to_object/telefon" />
+                        <br />
+                    </tal:phoneblock>
+                    <a tal:condition="rel/to_object/e_mail"
+                    tal:content="rel/to_object/e_mail"
+                    tal:attributes="href string:mailto:${rel/to_object/e_mail}"></a>
+                </div>
+                <div class="contactLink">
+                    <a href=""
+                    tal:attributes="href rel/to_object/absolute_url">mehr Informationen</a>
+                </div>
+            </div>
+        </div>
+    </tal:block>
+</div>
