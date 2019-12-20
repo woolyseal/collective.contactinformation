@@ -39,14 +39,14 @@ This product has not been translated yet
 Installation
 ------------
 
-Install mr.developer first:
+Install mr.developer first by adding following lines and proceed with a buildout:
 
     [buildout]
 
     extensions =
         mr.developer
 
-Install collective.contactinformation by adding it to your buildout:
+Install collective.contactinformation by adding it to your buildout now:
 
     [buildout]
 
