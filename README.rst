@@ -39,15 +39,29 @@ This product has not been translated yet
 Installation
 ------------
 
-Install collective.contactinformation by adding it to your buildout::
+Install mr.developer first:
 
     [buildout]
+
+    extensions =
+        mr.developer
+
+Install collective.contactinformation by adding it to your buildout:
+
+    [buildout]
+
+    auto-checkout = 
+        collective.contactinformation
 
     ...
 
     eggs =
         collective.contactinformation
 
+    ...
+
+    [sources]
+    collective.contactinformation = git git://github.com/wkbkhard/collective.contactinformation.git
 
 and then running ``bin/buildout``
 
