@@ -21,6 +21,7 @@ Examples
 --------
 
 Parts of this AddOn can be seen at:
+
 - www.erichsen.de
 - www.tbzpaderborn.de
 
@@ -61,6 +62,7 @@ Install collective.contactinformation by adding it to your buildout now:
     ...
 
     [sources]
+
     collective.contactinformation = git git://github.com/wkbkhard/collective.contactinformation.git
 
 and then running ``bin/buildout``
