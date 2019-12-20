@@ -6,20 +6,23 @@
 collective.contactinformation
 =============================
 
-Tell me what your product does
+AddOn for Plone 5 with Python 2.7. to add contactinformation for distribution partners or contacts.
 
 Features
 --------
 
-- Can be bullet points
+- Adds new contenttype "Contactinformation"
+- Adds new behavior for setting relations between context and contacts
+- Adds Macro to display connected contacts of content
+- Adds View to show all contacts with countries on a world map
 
 
 Examples
 --------
 
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
-
+Parts of this AddOn can be seen at:
+- www.erichsen.de
+- www.tbzpaderborn.de
 
 Documentation
 -------------
@@ -30,9 +33,7 @@ Full documentation for end users can be found in the "docs" folder, and is also 
 Translations
 ------------
 
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
+This product has not been translated yet
 
 
 Installation
@@ -54,9 +55,8 @@ and then running ``bin/buildout``
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/collective.contactinformation/issues
-- Source Code: https://github.com/collective/collective.contactinformation
-- Documentation: https://docs.plone.org/foo/bar
+- Issue Tracker: https://github.com/wkbkhard/collective.contactinformation/issues
+- Source Code: https://github.com/wkbkhard/collective.contactinformation
 
 
 Support
