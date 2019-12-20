@@ -7,6 +7,14 @@
   -*- extra stuff goes here -*-
 
   <browser:page
+     name="contacts-macro"
+     for="Products.CMFCore.interfaces.IFolderish"
+     class=".contacts_macro.ContactsMacro"
+     template="contacts_macro.pt"
+     permission="zope2.View"
+     />
+
+  <browser:page
      name="world-map-view"
      for="*"
      class=".world_map_view.WorldMapView"
